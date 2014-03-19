@@ -1,0 +1,17 @@
+{
+  "name": "isomorphic-angular",
+  "description": "share the code!",
+  "version": "0.0.1",
+  "private": false,
+  "dependencies": {
+    "express": "~3.0",
+    "require-directory": "*"
+  },
+  "devDependencies": {
+    "rewire": "~1.0.3",
+    "supervisor": "~0.4.1",
+    "grunt": "~0.4",
+    "grunt-contrib-jshint": "~0.2.0",
+    "grunt-contrib-nodeunit": "~0.1.2"
+  }
+}
