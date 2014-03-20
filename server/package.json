@@ -1,17 +1,23 @@
 {
   "name": "isomorphic-angular",
   "description": "share the code!",
+  "main": "app.js",
   "version": "0.0.1",
   "private": false,
   "dependencies": {
     "express": "~3.0",
-    "require-directory": "*"
+    "require-directory": "*",
+    "consolidate": "~0.10.0",
+    "handlebars": "~2.0.0-alpha.2"
   },
   "devDependencies": {
-    "rewire": "~1.0.3",
-    "supervisor": "~0.4.1",
-    "grunt": "~0.4",
-    "grunt-contrib-jshint": "~0.2.0",
-    "grunt-contrib-nodeunit": "~0.1.2"
+    "grunt": "~0.4.1",
+    "browserify": "~2.35.0",
+    "grunt-browserify": "~1.2.9",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-nodemon": "~0.1.1",
+    "grunt-concurrent": "~0.4.1",
+    "grunt-contrib-stylus": "~0.10.0",
+    "grunt-node-inspector": "~0.1.1"
   }
 }
