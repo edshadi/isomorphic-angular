@@ -2,14 +2,59 @@ module.exports = function (grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    cwd: '../.',
+
+    browserify: {
+      main: {
+        files: {
+          '../client/build/scripts.js': '../client/entry.js',
+        },
+      },
+    },
+
     nodemon: {
+      main: {},
       debug: {
         options: {
           nodeArgs: ['--debug']
         }
+      }
+    },
+
+    watch: {
+      app: {
+        files: ['./lib/**/*', '../client/src/**/*'],
+        tasks: ['browserify'],
+        options: {
+          interrupt: true
+        }
       },
-      watch: ['./client/src/app/test.js', './server/app.js', './server/lib/**/*']
+      styles: {
+        files: 'assets/stylesheets/**/*',
+        tasks: ['stylus'],
+        options: {
+          interrupt: true
+        }
+      }
+    },
+
+    concurrent: {
+      main: {
+        tasks: ['nodemon', 'watch'],
+        options: {
+          logConcurrentOutput: true
+        }
+      },
+
+      debug: {
+        tasks: ['nodemon:debug', 'watch', 'node-inspector'],
+        options: {
+          logConcurrentOutput: true
+        }
+      }
+    },
+
+    'node-inspector': {
+      main: {}
     }
   });
 
@@ -21,6 +66,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-node-inspector');
 
   grunt.registerTask('compile', ['browserify', 'stylus']);
-  // grunt.registerTask('default', ['compile']);
-  grunt.registerTask('default', ['nodemon']);
+  grunt.registerTask('server', ['browserify', 'concurrent']);
+  grunt.registerTask('default', ['browserify', 'concurrent:debug']);
 };
